@@ -37,7 +37,7 @@ def parse():
             if any(ele in line for ele in keyWord):
                 print(deco)
                 test = result.group(1)
-                t = test.replace("à", '').replace('H', ':')
+                t = test.replace('à', '').replace('H', ':').replace('h', ':')
                 matches = datefinder.find_dates(t)
                 for match in matches:
                     date = match
