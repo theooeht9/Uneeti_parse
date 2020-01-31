@@ -32,25 +32,24 @@ def parse():
     with open(file) as test:
         for line in test:
             result = re.search('CRM(.*)', line)
-            # print(test)
-            # matches = datefinder.find_dates(line)
             if any(ele in line for ele in keyWord):
                 print(deco)
                 test = result.group(1)
-                t = test.replace('à', '').replace('H', ':').replace('h', ':')
-                matches = datefinder.find_dates(t)
-                for match in matches:
-                    date = match
-                    # if i < 2:
-                    #     print("DATE: ",date)
-                    #     i+=1
-                if keyWord[0] in line:
-                    print(keyWord[0],date)
-                elif keyWord[1] in line:
-                    print(keyWord[1],date)
-                elif keyWord[2] in line:
-                    print(keyWord[2],date)
-                # print(result.group(1))
-                print(deco)
-                return
+                if any(ele in test for ele in keyWord):
+                    t = test.replace('à', '').replace('H', ':').replace('h', ':')
+                    matches = datefinder.find_dates(t)
+                    for match in matches:
+                        date = match
+                        # if i < 2:
+                        #     print("DATE: ",date)
+                        #     i+=1
+                    if keyWord[0] in line:
+                        print(keyWord[0],date)
+                    elif keyWord[1] in line:
+                        print(keyWord[1],date)
+                    elif keyWord[2] in line:
+                        print(keyWord[2],date)
+                    # print(result.group(1))
+                    print(deco)
+                    return
 parse()
