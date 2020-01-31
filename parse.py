@@ -13,7 +13,7 @@ def front():
     if yes_or_not == "Yes":
         j = 0
         print(deco)
-        number_new = int(input("Enter the numer to new keyword: "))
+        number_new = int(input("Enter the number to new keyword: "))
         while j < number_new:
             item = input("Add new keyword to the List: ")
             keyWord.append(item)
@@ -43,12 +43,15 @@ def parse():
                         # if i < 2:
                         #     print("DATE: ",date)
                         #     i+=1
-                    if keyWord[0] in line:
-                        print(keyWord[0],date)
-                    elif keyWord[1] in line:
-                        print(keyWord[1],date)
-                    elif keyWord[2] in line:
-                        print(keyWord[2],date)
+                    for i in range(len(keyWord)):
+                        if keyWord[i] in test:
+                            print (keyWord[i], date) 
+                    # if keyWord[0] in test:
+                    #     print(keyWord[0],date)
+                    # elif keyWord[1] in test:
+                    #     print(keyWord[1],date)
+                    # elif keyWord[2] in test:
+                    #     print(keyWord[2],date)
                     # print(result.group(1))
                     print(deco)
                     return
