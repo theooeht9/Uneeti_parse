@@ -1,6 +1,7 @@
 import re
 import datefinder
 
+# "graphic" interface of program
 def front():
     global deco
     deco = "########"
@@ -10,7 +11,7 @@ def front():
     print("Your keywords: ",keyWord)
     print(deco)
     yes_or_not = input("Would you enter other keyword ? Yes or Not: ")
-    if yes_or_not == "Yes":
+    if yes_or_not == "Yes" or yes_or_not == "yes":
         j = 0
         print(deco)
         number_new = int(input("Enter the number to new keyword: "))
@@ -26,6 +27,7 @@ def front():
     print(deco)
     file = input("Enter file to parse: ")
     
+# parse
 def parse():
     i = 1
     front()
@@ -37,22 +39,17 @@ def parse():
                 test = result.group(1)
                 if any(ele in test for ele in keyWord):
                     t = test.replace('à', '').replace('H', ':').replace('h', ':')
+                    
                     matches = datefinder.find_dates(t)
-                    for match in matches:
-                        date = match
-                        # if i < 2:
-                        #     print("DATE: ",date)
-                        #     i+=1
+                    listMatchKeyWord=[]
                     for i in range(len(keyWord)):
                         if keyWord[i] in test:
-                            print (keyWord[i], date) 
-                    # if keyWord[0] in test:
-                    #     print(keyWord[0],date)
-                    # elif keyWord[1] in test:
-                    #     print(keyWord[1],date)
-                    # elif keyWord[2] in test:
-                    #     print(keyWord[2],date)
-                    # print(result.group(1))
+                            listMatchKeyWord.append(keyWord[i])
+                    list=[]
+                    for date in matches:
+                        list.append(date)
+                    for i in range(len(listMatchKeyWord)):
+                        print (listMatchKeyWord[i], list[i])
                     print(deco)
                     return
 parse()
