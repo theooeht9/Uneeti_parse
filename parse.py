@@ -6,7 +6,7 @@ def front():
     global deco
     deco = "########"
     #Default KeyWord
-    global keyWord 
+    global keyWord
     keyWord = ["tâche", "rendez-vous", "appel téléphonique"]
     print(deco)
     print("Your keywords: ",keyWord)
@@ -28,22 +28,28 @@ def front():
         print(deco)
         
     #final KeyWord before parsing
-    print(keyWord)
+    print("Your final keywords: ",keyWord)
+    
+    #Enter the word which will parse the file
+    print(deco)
+    global input_crm
+    input_crm = input("Enter the WORD which will parse the file: ")
     
     #Enter file to parse
     global file 
     print(deco)
-    file = input("Enter file to parse: ")
+    file = input("Enter .txt file to parse: ")
     
 # parse
 def parse():
     front()
     #open the file
+    crm = input_crm + "(.*)"
     if file.endswith('.txt'):
         with open(file) as myfile:
             for line in myfile:
                 # Search what is after 'CRM' 
-                result = re.search('CRM(.*)', line)
+                result = re.search(crm, line)
                 if any(ele in line for ele in keyWord):
                     print(deco)
                     #String of all after CRM
@@ -75,4 +81,6 @@ def parse():
     else:
         print(deco)
         print("Impossible ! Wrong file type")
-parse()
+
+if __name__ == '__main__':
+    parse()
